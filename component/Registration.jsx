@@ -1,12 +1,15 @@
 import CheckBox from 'expo-checkbox'
 import React, { useState } from 'react'
-import { View, StyleSheet, Text, TextInput, Button } from 'react-native'
+import { View, StyleSheet, Text, TextInput, Button, TouchableOpacity } from 'react-native'
 
-export default function Registration() {
+export default function Registration({navigation}) {
   const [checkBox, setCheckBox] = useState(false);
 
   const handleCheckBox = () => {
     setCheckBox(!checkBox);
+  }
+  const navigateLogin = () => {
+    navigation.navigate('Login');
   }
   return (
     <View style={styles.container}>
@@ -33,14 +36,15 @@ export default function Registration() {
         />
         <View style={{ flexDirection: 'row' }}>
           <CheckBox
-            disabled='false'
-            color={checkBox ? 'green' : 'FFFFFF'}
+            backgroundColor={checkBox ? 'green' : 'FFFFFF'}
             onValueChange={handleCheckBox}
           />
         <Text style={styles.tac}>I agree to the <Text style={styles.terms}>terms and conditions.</Text></Text>
         </View>
         <Button title="Submit Registration"/>
-        <Text style={styles.text}>Already have an account?</Text>
+        <TouchableOpacity onPress={navigateLogin}>
+          <Text style={styles.text}>Already have an account?</Text>
+        </TouchableOpacity>
     </View>
   )
 }
@@ -50,26 +54,27 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: '#CBE4F9'
     },
     header: {
-        fontSize: 30,
+        fontSize: 27,
         marginBottom: 20
     },
     inputs: {
-      height: 40,
+      height: 35,
       borderColor: 'gray',
       borderWidth: 1,
       marginBottom: 16,
       padding: 8,
-      width: '65%',
+      width: 269,
       borderRadius: 5,
       paddingLeft: 15,
       backgroundColor: 'white'
     },
     label: {
-      fontSize: 20,
+      fontSize: 12,
       alignSelf: 'flex-start',
-      marginLeft: 65,
+      marginLeft: 48,
       marginBottom: '1%'
     },
     terms: {
@@ -78,10 +83,11 @@ const styles = StyleSheet.create({
     tac: {
       marginBottom: 20,
       marginLeft: '2%',
-      fontSize: 12.9
+      fontSize: 12
     },
     text: {
       marginTop: 40,
-      color: '#596FB7'
+      color: '#596FB7',
+      fontSize: 10
     }
 })
