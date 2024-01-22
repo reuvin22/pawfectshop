@@ -1,17 +1,19 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Login from './component/Login';
-import Registration from './component/Registration';
-import { View } from 'react-native';
-import ForgotPassword from './component/ForgotPassword';
-import HomePage from './component/Homepage';
+import Login from './pages/Login';
+import Registration from './pages/Registration';
+import ForgotPassword from './pages/ForgotPassword';
+import HomePage from './pages/Homepage';
+import LandingPage from './pages/LandingPage';
+
 
 export default function App() {
 
   const Stack = createNativeStackNavigator();
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Login'>
+      <Stack.Navigator initialRouteName='LandingPage'>
+        <Stack.Screen name='LandingPage' component={LandingPage} />
         <Stack.Screen name='ForgotPassword' component={ForgotPassword} />
         <Stack.Screen name='Login' component={Login}/>
         <Stack.Screen name='Registration' component={Registration} />
